@@ -1,0 +1,7 @@
+{
+  "name": "angular-three-login-screen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
