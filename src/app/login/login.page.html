@@ -1,0 +1,17 @@
+<ion-content>
+  <app-login-cube [status]="loginStore.status$ | async"></app-login-cube>
+
+  <div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+      <ion-item>
+        <ion-label>username</ion-label>
+        <ion-input formControlName="username" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-button type="submit" expand="full">log in</ion-button>
+    </form>
+  </div>
+</ion-content>
