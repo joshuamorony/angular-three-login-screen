@@ -10,14 +10,9 @@ export interface LoginState {
 
 @Injectable()
 export class LoginStore extends ComponentStore<LoginState> {
-  constructor(private authService: AuthService) {
-    super({ status: 'pending' });
-  }
-
   status$ = this.select((state) => state.status);
 
-  login = this.effect((credentials$: Observable<LoginCredentials>) => {
-    return credentials$.pipe(
+  login = this.effect((credentials$: Observable<LoginCredentials>) => credentials$.pipe(
       tap(() => this.setState({ status: 'authenticating' })),
       switchMap((credentials) =>
         this.authService.login(credentials).pipe(
@@ -28,6 +23,9 @@ export class LoginStore extends ComponentStore<LoginState> {
           catchError(() => EMPTY)
         )
       )
-    );
-  });
+    ));
+
+  constructor(private authService: AuthService) {
+    super({ status: 'pending' });
+  }
 }
