@@ -1,7 +1,9 @@
 .login-container {
-  height: 100%;
-  width: 100%;
   display: flex;
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  width: 23rem;
 }
 
 form {

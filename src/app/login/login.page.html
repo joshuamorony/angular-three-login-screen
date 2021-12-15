@@ -1,5 +1,6 @@
-<ion-content>
-  <app-login-cube [status]="loginStore.status$ | async"></app-login-cube>
+<ion-content style="position: relative">
+<!--  <app-login-cube [status]="loginStore.status$ | async"></app-login-cube>-->
+  <app-robot-expressive></app-robot-expressive>
 
   <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
