@@ -1,6 +1,7 @@
 import { NgtCoreModule } from '@angular-three/core';
 import { NgtGridHelperModule } from '@angular-three/core/helpers';
 import {
+  NgtAmbientLightModule,
   NgtDirectionalLightModule,
   NgtHemisphereLightModule,
 } from '@angular-three/core/lights';
@@ -13,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   NgModule,
 } from '@angular/core';
 import { GridHelper, Material } from 'three';
@@ -25,8 +25,6 @@ import { RobotComponent } from './robot.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RobotExpressiveComponent {
-  @Input() status;
-
   onGridHelperReady(helper: GridHelper) {
     const material = helper.material as Material;
     material.opacity = 0.2;
