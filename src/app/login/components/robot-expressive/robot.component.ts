@@ -1,7 +1,7 @@
 import { NgtDestroyedService, NgtRender } from '@angular-three/core';
 import { NgtGLTFLoaderService } from '@angular-three/soba/loaders';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { takeUntil, timer } from 'rxjs';
 import {
   AnimationAction,
   AnimationClip,
