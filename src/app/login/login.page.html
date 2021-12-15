@@ -1,18 +1,27 @@
-<ion-content style="position: relative">
-<!--  <app-login-cube [status]="loginStore.status$ | async"></app-login-cube>-->
+<ion-content>
+  <!--  <app-login-cube [status]="loginStore.status$ | async"></app-login-cube>-->
   <app-robot-expressive></app-robot-expressive>
 
   <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>username</ion-label>
         <ion-input formControlName="username" type="text"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label>password</ion-label>
         <ion-input formControlName="password" type="password"></ion-input>
       </ion-item>
-      <ion-button type="submit" expand="full">log in</ion-button>
+      <ng-container *ngIf="loginStore.status$ | async as status">
+        <ion-button
+          [disabled]="status === 'authenticating'"
+          type="submit"
+          expand="full"
+        >
+          log in
+          <ion-spinner *ngIf="status === 'authenticating'"></ion-spinner>
+        </ion-button>
+      </ng-container>
     </form>
   </div>
 </ion-content>

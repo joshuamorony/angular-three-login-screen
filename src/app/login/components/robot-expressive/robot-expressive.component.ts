@@ -8,12 +8,13 @@ import { NgtMeshPhongMaterialModule } from '@angular-three/core/materials';
 import { NgtPrimitiveModule } from '@angular-three/core/primitive';
 import { NgtSobaLoaderModule } from '@angular-three/soba/loaders';
 import { NgtSobaPlaneModule } from '@angular-three/soba/shapes';
+import { NgtSobaStarsModule } from '@angular-three/soba/staging';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  NgModule
+  NgModule,
 } from '@angular/core';
 import { GridHelper, Material } from 'three';
 import { RobotComponent } from './robot.component';
@@ -24,7 +25,7 @@ import { RobotComponent } from './robot.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RobotExpressiveComponent {
-  @Input() status
+  @Input() status;
 
   onGridHelperReady(helper: GridHelper) {
     const material = helper.material as Material;
@@ -41,6 +42,7 @@ export class RobotExpressiveComponent {
     NgtHemisphereLightModule,
     NgtDirectionalLightModule,
     NgtSobaPlaneModule,
+    NgtSobaStarsModule,
     NgtMeshPhongMaterialModule,
     NgtGridHelperModule,
     CommonModule,

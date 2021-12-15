@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  RobotExpressiveModule
-} from "./components/robot-expressive/robot-expressive.component";
+import { RobotExpressiveModule } from './components/robot-expressive/robot-expressive.component';
 import { LoginPage } from './login.page';
 
 import { HomePageRoutingModule } from './login-routing.module';

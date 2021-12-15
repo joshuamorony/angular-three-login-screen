@@ -2,15 +2,31 @@
   (created)="$event.camera.lookAt(0, 2, 0)"
   [shadows]="true"
   [camera]="{ fov: 45, near: 0.25, far: 100, position: [-10, 5, 20] }"
-  [scene]="{ background: '#e0e0e0' | color, fog: ['#e0e0e0', 20, 100] | fog }"
+  [scene]="{ background: '#000' | color, fog: ['#e0e0e0', 20, 100] | fog }"
 >
+  <!--    sky-->
+  <ngt-soba-stars></ngt-soba-stars>
+
   <!--      lights-->
-  <ngt-hemisphere-light [args]="['#ffffff', '#444444']" [position]="[0, 20, 0]"></ngt-hemisphere-light>
-  <ngt-directional-light [args]="['#ffffff']" [position]="[0, 20, 10]" [castShadow]="true"></ngt-directional-light>
+  <ngt-hemisphere-light
+    [args]="['#ffffff', '#444444']"
+    [position]="[0, 20, 0]"
+  ></ngt-hemisphere-light>
+  <ngt-directional-light
+    [args]="['#ffffff']"
+    [position]="[0, 20, 10]"
+    [castShadow]="true"
+  ></ngt-directional-light>
 
   <!--    ground-->
-  <ngt-soba-plane [args]="[2000, 2000]" [rotation]="[-(0.5 | mathConst: 'PI'), 0, 0]" [receiveShadow]="true">
-    <ngt-mesh-phong-material [parameters]="{ color: '#ffffff', depthWrite: false }"></ngt-mesh-phong-material>
+  <ngt-soba-plane
+    [args]="[2000, 2000]"
+    [rotation]="[-(0.5 | mathConst: 'PI'), 0, 0]"
+    [receiveShadow]="true"
+  >
+    <ngt-mesh-phong-material
+      [parameters]="{ color: '#ffffff', depthWrite: false }"
+    ></ngt-mesh-phong-material>
   </ngt-soba-plane>
   <ngt-grid-helper
     #ngtGridHelper="ngtGridHelper"

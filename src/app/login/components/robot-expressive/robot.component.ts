@@ -1,5 +1,6 @@
 import { NgtDestroyedService, NgtRender } from '@angular-three/core';
 import { NgtGLTFLoaderService } from '@angular-three/soba/loaders';
+import { NgtSobaStars } from '@angular-three/soba/staging';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { takeUntil, timer } from 'rxjs';
 import {
@@ -16,7 +17,7 @@ import { LoginStore } from '../../login.store';
   selector: 'app-robot',
   templateUrl: './robot.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NgtDestroyedService]
+  providers: [NgtDestroyedService],
 })
 export class RobotComponent implements OnInit {
   robot$ = this.gltfLoaderService.load('assets/RobotExpressive.glb');
@@ -38,26 +39,31 @@ export class RobotComponent implements OnInit {
   #activeAction?: AnimationAction;
   #previousAction?: AnimationAction;
 
-  constructor(private gltfLoaderService: NgtGLTFLoaderService, private loginStore: LoginStore, private destroyed: NgtDestroyedService) {
-  }
+  constructor(
+    private gltfLoaderService: NgtGLTFLoaderService,
+    private loginStore: LoginStore,
+    private destroyed: NgtDestroyedService
+  ) {}
 
   ngOnInit() {
-    this.loginStore.status$.pipe(takeUntil(this.destroyed)).subscribe(status => {
-      switch (status) {
-        case 'pending':
-          this.fadeToAction('Walking');
-          break;
-        case 'authenticating':
-          this.fadeToAction('Running');
-          break;
-        case 'success':
-          this.fadeToAction('ThumbsUp');
-          break;
-        case 'error':
-          this.fadeToAction('Death');
-          break;
-      }
-    });
+    this.loginStore.status$
+      .pipe(takeUntil(this.destroyed))
+      .subscribe((status) => {
+        switch (status) {
+          case 'pending':
+            this.fadeToAction('Walking');
+            break;
+          case 'authenticating':
+            this.fadeToAction('Running');
+            break;
+          case 'success':
+            this.fadeToAction('ThumbsUp');
+            break;
+          case 'error':
+            this.fadeToAction('Death');
+            break;
+        }
+      });
   }
 
   onReady(model: Group, animations: AnimationClip[]) {
@@ -101,7 +107,8 @@ export class RobotComponent implements OnInit {
       this.#previousAction?.fadeOut(duration);
     }
 
-    this.#activeAction?.reset()
+    this.#activeAction
+      ?.reset()
       .setEffectiveTimeScale(1)
       .setEffectiveWeight(1)
       .fadeIn(duration)
